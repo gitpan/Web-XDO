@@ -356,11 +356,8 @@ CLASSES
 
  Web::XDO::Token::Tag::Include
 
-    This class represents an <include> tag.
-
-  $include->output()
-
-    $include->output() embeds the referenced page in the current page.
+    This class represents an <include> tag. This tag embeds the referenced
+    page in the current page.
 
  Web::XDO::Token::Tag::Property
 
@@ -380,42 +377,30 @@ CLASSES
 
  Web::XDO::Token::Tag::ShowProperty
 
-    This class represents a <show-property> tag.
-
-  $show_property->output()
-
-    This method outputs the property of the top page's that is named in the
-    "name" attribute. Note that the value of the property is not
-    HTML-escaped.
+    This class represents a <show-property> tag. This tag outputs the
+    property of the top page's that is named in the "name" attribute. Note
+    that the value of the property is not HTML-escaped.
 
  Web::XDO::Token::Tag::XdoRoot
 
     This class represents an <xdo-root>
-    <http://idocs.com/xdo/guides/version-0-10/tags/xdo-root/> tag.
-
-  $xdo_root->output()
-
-    This method outputs the $xdo object's {'root'} property.
+    <http://idocs.com/xdo/guides/version-0-10/tags/xdo-root/> tag. This tag
+    outputs the $xdo object's {'root'} property.
 
  Web::XDO::Token::Tag::Wrapper
 
     This class represents a <wrapper>
-    <http://idocs.com/xdo/guides/version-0-10/tags/wrapper/> tag.
-
-  $wrapper->output()
-
-    This method includes the referenced page. The contents of the <wrapper>
-    tag are used to the replace the included page's <wrapper-content> tag.
+    <http://idocs.com/xdo/guides/version-0-10/tags/wrapper/> tag. The
+    contents of the <wrapper> tag are used to replace the included page's
+    <wrapper-content> tag.
 
  Web::XDO::Token::Tag::WrapperContent
 
     This class represents a <wrapper-content>
     <http://idocs.com/xdo/guides/version-0-10/tags/wrapper/> tag.
 
-  $wrapper_content->output()
-
-    This method does not do anything. The <wrapper-content> tag is a
-    placeholder. When a <wrapper> tag is output it removes the
+    This tag itself does not output anything. The <wrapper-content> tag is
+    a placeholder. When a <wrapper> tag is output it removes the
     <<wrapper-content> tag and substitutes in its own contents.
 
  Web::XDO::Token::Tag::XdoTest
@@ -435,7 +420,7 @@ CLASSES
 
  Web::XDO::Token::Tag::A
 
-    This class represents a <a>
+    This class represents an <a>
     <http://idocs.com/xdo/guides/version-0-10/tags/a/> tag.
 
 TERMS AND CONDITIONS
@@ -454,4 +439,8 @@ VERSION
     Version 0.10 - December 1, 2013
 
       Initial release
+
+    Version 0.11 - December 2, 2013
+
+      Fixed problem with prerequisites.
 

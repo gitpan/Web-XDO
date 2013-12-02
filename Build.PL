@@ -9,6 +9,7 @@ $params = {
             'module_name' => 'Web::XDO',
             'requires' => {
                             'String::Util' => 0,
+                            'HTML::Parser' => 0,
                             'URI::URL' => 0
                           },
             'dist_version_from' => 'lib/Web/XDO.pm',

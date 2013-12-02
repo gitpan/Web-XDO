@@ -373,11 +373,8 @@ is called before the tag is output.
 
 =head2 Web::XDO::Token::Tag::Include
 
-This class represents an E<lt>includeE<gt> tag.
-
-=head3 $include->output()
-
-$include->output() embeds the referenced page in the current page.
+This class represents an E<lt>includeE<gt> tag. This tag embeds the referenced
+page in the current page.
 
 =head2 Web::XDO::Token::Tag::Property
 
@@ -397,35 +394,22 @@ E<lt>propertyE<gt> tag sets properties in both parsing and output.
 
 =head2 Web::XDO::Token::Tag::ShowProperty
 
-This class represents a E<lt>show-propertyE<gt> tag.
-
-=head3 $show_property->output()
-
-This method outputs the property of the L<< top page's|/$page-E<gt>top() >> that
-is named in the "name" attribute. Note that the value of the property is not
-HTML-escaped.
+This class represents a E<lt>show-propertyE<gt> tag. This tag outputs the
+property of the L<< top page's|/$page-E<gt>top() >> that is named in the "name"
+attribute. Note that the value of the property is not HTML-escaped.
 
 =head2 Web::XDO::Token::Tag::XdoRoot
 
 This class represents an
 L<< E<lt>xdo-rootE<gt>|http://idocs.com/xdo/guides/version-0-10/tags/xdo-root/ >>
-tag.
-
-=head3 $xdo_root->output()
-
-This method outputs the
-L<$xdo object's|/Web::XDO> {'root'} property.
+tag. This tag outputs the L<$xdo object's|/Web::XDO> {'root'} property.
 
 =head2 Web::XDO::Token::Tag::Wrapper
 
 This class represents a
 L<< E<lt>wrapperE<gt>|http://idocs.com/xdo/guides/version-0-10/tags/wrapper/ >>
-tag.
-
-=head3 $wrapper->output()
-
-This method includes the referenced page.  The contents of the
-E<lt>wrapperE<gt> tag are used to the replace the included page's
+tag.  The contents of the E<lt>wrapperE<gt> tag are used to replace the
+included page's
 L<< E<lt>wrapper-contentE<gt>|/Web::XDO::Token::Tag::WrapperContent >> tag.
 
 =head2 Web::XDO::Token::Tag::WrapperContent
@@ -434,11 +418,8 @@ This class represents a
 L<< E<lt>wrapper-contentE<gt>|http://idocs.com/xdo/guides/version-0-10/tags/wrapper/ >>
 tag.
 
-=head3 $wrapper_content->output()
-
-This method does not do anything.  The E<lt>wrapper-contentE<gt> tag is a
-placeholder. When a
-L<< E<lt>wrapperE<gt>|/$wrapper-E<gt>output() >>
+This tag itself does not output anything.  The E<lt>wrapper-contentE<gt> tag is a
+placeholder. When a L<< E<lt>wrapperE<gt>|/Web::XDO::Token::Tag::Wrapper >>
 tag is output it removes the <E<lt>wrapper-contentE<gt> tag and substitutes in
 its own contents.
 
@@ -462,7 +443,7 @@ tag.
 
 =head2 Web::XDO::Token::Tag::A
 
-This class represents a
+This class represents an
 L<< E<lt>aE<gt>|http://idocs.com/xdo/guides/version-0-10/tags/a/ >>
 tag.
 
@@ -484,6 +465,10 @@ F<miko@idocs.com>
 =item Version 0.10 - December 1, 2013
 
 Initial release
+
+=item Version 0.11 - December 2, 2013
+
+Fixed problem with prerequisites.
 
 =back
 

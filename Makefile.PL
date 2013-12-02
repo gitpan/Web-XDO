@@ -12,6 +12,7 @@ $make_args = {
                'LICENSE' => 'perl',
                'PREREQ_PM' => {
                                 'String::Util' => 0,
+                                'HTML::Parser' => 0,
                                 'URI::URL' => 0
                               }
              };

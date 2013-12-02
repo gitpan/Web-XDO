@@ -9,7 +9,7 @@ use String::Util ':all';
 # use Debug::ShowStuff::ShowVar;
 
 # VERSION
-our $VERSION = '0.10';
+our $VERSION = '0.11';
 
 
 =head1 NAME
@@ -1728,7 +1728,8 @@ $Web::XDO::Token::Tag::tag_classes{'include'} = __PACKAGE__;
 
 =head2 Web::XDO::Token::Tag::Include
 
-This class represents an E<lt>includeE<gt> tag.
+This class represents an E<lt>includeE<gt> tag. This tag embeds the referenced
+page in the current page.
 
 =cut
 
@@ -1736,13 +1737,6 @@ This class represents an E<lt>includeE<gt> tag.
 #------------------------------------------------------------------------------
 # output
 #
-
-=head3 $include->output()
-
-$include->output() embeds the referenced page in the current page.
-
-=cut
-
 sub output {
 	my ($tag, $page, $idx) = @_;
 	my ($included);
@@ -1872,22 +1866,15 @@ $Web::XDO::Token::Tag::tag_classes{'show-property'} = __PACKAGE__;
 
 =head2 Web::XDO::Token::Tag::ShowProperty
 
-This class represents a E<lt>show-propertyE<gt> tag.
+This class represents a E<lt>show-propertyE<gt> tag. This tag outputs the
+property of the L<top page's|/$page-E<gt>top()> that is named in the "name"
+attribute. Note that the value of the property is not HTML-escaped.
 
 =cut
 
 #------------------------------------------------------------------------------
 # output
 #
-
-=head3 $show_property->output()
-
-This method outputs the property of the L<top page's|/$page-E<gt>top()> that
-is named in the "name" attribute. Note that the value of the property is not
-HTML-escaped.
-
-=cut
-
 sub output {
 	my ($tag, $page, $idx) = @_;
 	my ($atts, $xdo, $props);
@@ -1933,7 +1920,7 @@ $Web::XDO::Token::Tag::tag_classes{'xdo-root'} = __PACKAGE__;
 
 This class represents an
 L<E<lt>xdo-rootE<gt>|http://idocs.com/xdo/guides/version-0-10/tags/xdo-root/>
-tag.
+tag. This tag outputs the L<$xdo object's|/Web::XDO> {'root'} property.
 
 =cut
 
@@ -1941,14 +1928,6 @@ tag.
 #------------------------------------------------------------------------------
 # output
 #
-
-=head3 $xdo_root->output()
-
-This method outputs the
-L<$xdo object's|/Web::XDO> {'root'} property.
-
-=cut
-
 sub output {
 	my ($tag, $page, $idx) = @_;
 	my ($xdo);
@@ -1989,23 +1968,15 @@ $Web::XDO::Token::Tag::tag_classes{'wrapper'} = __PACKAGE__;
 
 This class represents a
 L<E<lt>wrapperE<gt>|http://idocs.com/xdo/guides/version-0-10/tags/wrapper/>
-tag.
-
-=cut
-
-
-#------------------------------------------------------------------------------
-# output
-#
-
-=head3 $wrapper->output()
-
-This method includes the referenced page.  The contents of the
-E<lt>wrapperE<gt> tag are used to the replace the included page's
+tag.  The contents of the E<lt>wrapperE<gt> tag are used to replace the
+included page's
 L<E<lt>wrapper-contentE<gt>|/Web::XDO::Token::Tag::WrapperContent> tag.
 
 =cut
 
+#------------------------------------------------------------------------------
+# output
+#
 sub output {
 	my ($tag, $page, $idx) = @_;
 	my ($xdo, $atts, @contents, $wrapper, $included, $inc_tokens, $inc_idx);
@@ -2080,6 +2051,12 @@ This class represents a
 L<E<lt>wrapper-contentE<gt>|http://idocs.com/xdo/guides/version-0-10/tags/wrapper/>
 tag.
 
+This tag itself does not output anything.  The E<lt>wrapper-contentE<gt> tag is a
+placeholder. When a L<E<lt>wrapperE<gt>|/Web::XDO::Token::Tag::Wrapper>
+tag is output it removes the <E<lt>wrapper-contentE<gt> tag and substitutes in
+its own contents.
+
+
 =cut
 
 
@@ -2087,18 +2064,8 @@ tag.
 # output
 # don't output anything
 #
-
-=head3 $wrapper_content->output()
-
-This method does not do anything.  The E<lt>wrapper-contentE<gt> tag is a
-placeholder. When a
-L<E<lt>wrapperE<gt>|/$wrapper-E<gt>output()>
-tag is output it removes the <E<lt>wrapper-contentE<gt> tag and substitutes in
-its own contents.
-
-=cut
-
-sub output { }
+sub output {
+}
 #
 # output
 #------------------------------------------------------------------------------
@@ -2344,7 +2311,7 @@ $Web::XDO::Token::Tag::tag_classes{'a'} = __PACKAGE__;
 
 =head2 Web::XDO::Token::Tag::A
 
-This class represents a
+This class represents an
 L<E<lt>aE<gt>|http://idocs.com/xdo/guides/version-0-10/tags/a/>
 tag.
 
@@ -2456,6 +2423,10 @@ F<miko@idocs.com>
 =item Version 0.10 - December 1, 2013
 
 Initial release
+
+=item Version 0.11 - December 2, 2013
+
+Fixed problem with prerequisites.
 
 =back
 
